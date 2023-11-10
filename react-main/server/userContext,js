@@ -1,0 +1,19 @@
+import React, { createContext, useContext, useState } from 'react';
+
+const UserContext = createContext();
+
+export function UserProvider({ children }) {
+  const [firstname, setFirstname] = useState('');
+
+  return (
+    <UserContext.Provider value={{ firstname, setFirstname }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+export function useUser() {
+  return useContext(UserContext);
+}
+
+module.exports = app;
