@@ -1,0 +1,74 @@
+// import React, { useRef, useEffect } from 'react';
+// import { View, StyleSheet } from 'react-native';
+// import { RNCamera } from 'react-native-camera';
+// import * as posenet from '@tensorflow-models/posenet';
+
+// function Sensor() {
+//   const cameraRef = useRef(null);
+//   const canvasRef = useRef(null);
+
+//   useEffect(() => {
+//     runPosenet();
+//   }, []);
+
+//   const runPosenet = async () => {
+//     const net = await posenet.load();
+
+//     const detect = async () => {
+//       if (cameraRef.current && canvasRef.current) {
+//         const options = {
+//           quality: 0.5,
+//           base64: true,
+//           width: 640,
+//           height: 480,
+//         };
+//         const data = await cameraRef.current.takePictureAsync(options);
+//         const image = document.createElement('img');
+//         image.src = `data:image/jpg;base64,${data.base64}`;
+//         const videoWidth = data.width;
+//         const videoHeight = data.height;
+
+//         drawCanvas(image, videoWidth, videoHeight, net);
+//       }
+//     };
+
+//     const drawCanvas = async (image, videoWidth, videoHeight, net) => {
+//       const pose = await net.estimateSinglePose(image);
+//       // Implement your drawing logic here.
+//     };
+
+//     setInterval(detect, 100);
+//   };
+// }
+// export const Sensorscreen = ({cameraRef, canvasRef }) => {
+//   return (
+//     <View style={styles.container}>
+//       <RNCamera
+//         ref={cameraRef}
+//         style={styles.camera}
+//       />
+//       <View style={styles.canvasContainer}>
+//         {/* Render pose keypoints and skeletons here */}
+//         {/* You'll need to implement drawing using React Native components */}
+//       </View>
+//     </View>
+//   );
+//   }
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     flexDirection: 'column',
+//   },
+//   camera: {
+//     flex: 1,
+//   },
+//   canvasContainer: {
+//     position: 'absolute',
+//     width: 640,
+//     height: 480,
+//     left: 0,
+//     right: 0,
+//   },
+// });
+
+// export default Sensor;
