@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 
 export const WelcomeToDumbellSensor = ({ onStart }) => {
   const navigation = useNavigation(); // Hook to access navigation object
 
-  const handleStart = () => {
-    onStart();
+  const handleStart = (level) => {
+    onStart(level);
   };
 
   return (
@@ -15,16 +15,22 @@ export const WelcomeToDumbellSensor = ({ onStart }) => {
       <View style={styles.cardContainer}>
         <View style={styles.cardContent}>
           {/* Add your input fields, text areas, or any other content here */}
-          <Text style={styles.squatGuideText}>Welcome to Squat Sensor</Text>
+          <Text style={styles.squatGuideText}>Welcome to dumbbell sensoe Sensor</Text>
           <Text style={styles.squatGuideText}>Please make sure that you are wearing a proper workout clothes for better detection</Text>
           <Text style={styles.squatGuideText}>Please position yourself in a well-lit area or studio for better detection</Text>
           <Text style={styles.squatGuideText}>Please stand away from the camera until your whole body is visible.</Text>
           <Text style={styles.squatGuideText}>Presume starting position for the workout.</Text>
-          <Text style={styles.squatGuideText}>Press the start button to begin the countdown and get in position.</Text>
+          <Text style={styles.squatGuideText}>Press the level you desire to workout.</Text>
+          <Text style={styles.squatGuideText}>Beginner - 10 reps</Text>
+          <Text style={styles.squatGuideText}>Intermediate - 15 reps</Text>
+          <Text style={styles.squatGuideText}>Experienced - 20 reps</Text>
+
         </View>
       </View>
-      <View style={styles.countdownContainer}>
-        <Button title="Start" onPress={handleStart} style={styles.button} />
+      <View style={styles.buttonContainer}>
+        <Button title="Beginner" onPress={() => handleStart('beginner')} style={styles.button} />
+        <Button title="Intermediate" onPress={() => handleStart('intermediate')} style={styles.button} />
+        <Button title="Experienced"  onPress={() => handleStart('experienced')} style={styles.button} />
       </View>
     </View>
   );
@@ -83,12 +89,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black', // Updated text color
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    marginTop: 20,
+  },
   button: {
     backgroundColor: '#307ecc',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 10,
+    marginHorizontal: 10,
     alignSelf: 'center',
     shadowColor: '#000',
     shadowOffset: {

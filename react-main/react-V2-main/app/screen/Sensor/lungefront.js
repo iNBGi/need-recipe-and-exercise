@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+import { useNavigation } from '@react-navigation/native';
 
 export const WelcomeToLungeSensor = ({ onStart }) => {
-  const navigation = useNavigation(); // Hook to access navigation object
+  const navigation = useNavigation();
 
-  const handleStart = () => {
-    onStart();
+  const handleStart = (level) => {
+    onStart(level);
   };
 
   return (
     <View style={styles.container}>
-      
-      {/* Area for squat guide, notes, and procedures */}
       <View style={styles.cardContainer}>
         <View style={styles.cardContent}>
-          {/* Add your input fields, text areas, or any other content here */}
-          <Text style={styles.squatGuideText}>Welcome to Squat Sensor</Text>
-          <Text style={styles.squatGuideText}>Please make sure that you are wearing a proper workout clothes for better detection</Text>
-          <Text style={styles.squatGuideText}>Please position yourself in a well-lit area or studio for better detection</Text>
-          <Text style={styles.squatGuideText}>Please stand away from the camera until your whole body is visible.</Text>
-          <Text style={styles.squatGuideText}>Presume starting position for the workout.</Text>
-          <Text style={styles.squatGuideText}>Press the start button to begin the countdown and get in position.</Text>
+          <Text style={styles.lungeGuideText}>Welcome to Lunge Sensor</Text>
+          <Text style={styles.lungeGuideText}>Please make sure that you are wearing proper workout clothes for better detection</Text>
+          <Text style={styles.lungeGuideText}>Please position yourself in a well-lit area for better detection</Text>
+          <Text style={styles.lungeGuideText}>Please stand away from the camera until your whole body is visible.</Text>
+          <Text style={styles.lungeGuideText}>Presume starting position for the workout.</Text>
+          <Text style={styles.lungeGuideText}>Press the level you desire to workout.</Text>
+          <Text style={styles.squatGuideText}>Beginner - 10 reps</Text>
+          <Text style={styles.squatGuideText}>Intermediate - 15 reps</Text>
+          <Text style={styles.squatGuideText}>Experienced - 20 reps</Text>
         </View>
       </View>
-      <View style={styles.countdownContainer}>
-        <Button title="Start" onPress={handleStart} style={styles.button} />
+      <View style={styles.buttonContainer}>
+        <Button title="Beginner" onPress={() => handleStart('beginner')} style={styles.button} />
+        <Button title="Intermediate" onPress={() => handleStart('intermediate')} style={styles.button} />
+        <Button title="Experienced" onPress={() => handleStart('experienced')} style={styles.button} />
       </View>
     </View>
   );
@@ -38,29 +40,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  blueBackground: {
-    backgroundColor: 'darkblue',
-    borderRadius: 10,
-    padding: 20,
-    marginTop: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
   cardContainer: {
     backgroundColor: 'white',
     borderRadius: 10,
     marginTop: 20,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
@@ -68,21 +53,17 @@ const styles = StyleSheet.create({
   cardContent: {
     padding: 20,
   },
-  title: {
+  lungeGuideText: {
+    marginBottom: 20,
     fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
     textAlign: 'center',
-    color: 'black', // Updated text color
+    color: 'black',
   },
-  countdownText: {
-    color: 'black', // Updated text color
-  },
-  squatGuideText: {
-    marginBottom: 20, // Increased space between lines
-    fontSize: 20, // Increased font size
-    textAlign: 'center',
-    color: 'black', // Updated text color
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    marginTop: 20,
   },
   button: {
     backgroundColor: '#307ecc',
@@ -90,12 +71,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 10,
+    marginHorizontal: 10,
     alignSelf: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
